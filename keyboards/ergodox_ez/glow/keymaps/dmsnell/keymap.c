@@ -197,50 +197,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
     case ST_MACRO_4:
     if (record->event.pressed) {
-      SEND_STRING(
-	      SS_TAP(X_MINUS)
-	      SS_TAP(X_E)
-	      SS_TAP(X_X)
-	      SS_TAP(X_P)
-	      SS_TAP(X_O)
-	      SS_TAP(X_R)
-	      SS_TAP(X_T)
-	      SS_LSFT(SS_TAP(X_9))
-	      SS_TAP(X_LBRACKET)
-	      SS_TAP(X_RBRACKET)
-	      SS_LSFT(SS_TAP(X_0))
-	      SS_TAP(X_DOT)
-	      SS_TAP(X_LEFT)
-	      SS_TAP(X_LEFT)
-	      SS_TAP(X_LEFT)
-      );
+        SEND_STRING(
+            "-EXPORT([])."
+	    SS_TAP(X_LEFT)
+	    SS_TAP(X_LEFT)
+	    SS_TAP(X_LEFT)
+        );
 
     }
     break;
     case ST_MACRO_5:
     if (record->event.pressed) {
-      SEND_STRING(
-	      SS_LSFT(SS_TAP(X_3))
-	      SS_LSFT(SS_TAP(X_LBRACKET))
-	      SS_LSFT(SS_TAP(X_RBRACKET))
-	      SS_TAP(X_LEFT)
-      );
+        SEND_STRING(
+            "#{}"
+	    SS_TAP(X_LEFT)
+        );
 
     }
     break;
     case ST_MACRO_6:
     if (record->event.pressed) {
-      SEND_STRING(
-	      SS_LSFT(SS_TAP(X_COMMA))
-	      SS_LSFT(SS_TAP(X_COMMA))
-	      SS_LSFT(SS_TAP(X_QUOTE))
-	      SS_LSFT(SS_TAP(X_QUOTE))
-	      SS_LSFT(SS_TAP(X_DOT))
-	      SS_LSFT(SS_TAP(X_DOT))
-	      SS_TAP(X_LEFT)
-	      SS_TAP(X_LEFT)
-	      SS_TAP(X_LEFT)
-      );
+        SEND_STRING(
+            "<<\"\">>"
+	    SS_TAP(X_LEFT)
+	    SS_TAP(X_LEFT)
+	    SS_TAP(X_LEFT)
+        );
 
     }
     break;
