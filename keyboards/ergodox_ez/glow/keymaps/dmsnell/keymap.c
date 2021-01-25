@@ -18,11 +18,12 @@
 #define LSA_T(kc) MT(MOD_LSFT | MOD_LALT, kc)
 #define BP_NDSH_MAC ALGR(KC_8)
 
-#define _C__ {0,0,0}       // Clear
-#define _C_R {0,194,237}   // Red
-#define _C_G {86,244,174}  // Green
-#define _CLG {109,51,209}  // Light Green
-#define _C_B {141,255,233} // Blue
+#define ___ {0,0,0}       // Clear
+#define _RED {0,194,237}   // Red
+#define _GRN {86,244,174}  // Green
+#define _LGR {109,51,209}  // Light Green
+#define _BLU {141,255,233} // Blue
+#define _YLW {41, 179, 222} // Yellow
 
 enum layer_names {
   _L_BASE = 0,
@@ -30,7 +31,7 @@ enum layer_names {
   _L_MOUSE,
   _L_MOUSE_SCROLL,
   _L_COMMAND,
-  _L_ERLANG
+  _L_ERLANG,
 };
 
 enum custom_keycodes {
@@ -46,7 +47,7 @@ enum custom_keycodes {
   _M_ERL_BIN,                 // <<"">>
   _M_ERL_C1,                  // % - one level of Erlang commenting (line)
   _M_ERL_C2,                  // %% - two levels of Erlang commenting (function)
-  _M_ERL_C3                   // %%% - three levels of Erlang commenting (module)
+  _M_ERL_C3,                  // %%% - three levels of Erlang commenting (module)
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -55,17 +56,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LT(_L_ERLANG,KC_DELETE),KC_Q,   KC_W,           KC_E,           KC_R,           KC_T,           _M_EXPOSE,                            KC_TAB,         KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLASH,
     LT(_L_SYMBOLS,KC_TAB),KC_A,     KC_S,           KC_D,           KC_F,           KC_G,                                                                 KC_H,           KC_J,           KC_K,           KC_L,           KC_SCOLON,      LT(_L_MOUSE,KC_QUOTE),
     KC_LSPO,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           LT(_L_COMMAND, KC_ENTER),             KC_ENTER,       KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH),KC_RSPC,
-    KC_LCTRL,       WEBUSB_PAIR,    LALT(KC_LSHIFT),KC_LEFT,        KC_RIGHT,                                                                             KC_UP,          KC_DOWN,        KC_LBRACKET,    KC_RBRACKET,    _M_UNICODE,
+    KC_LCTRL,       WEBUSB_PAIR,    LALT(KC_LSHIFT),KC_LEFT,        KC_RIGHT,                                                                                             KC_UP,          KC_DOWN,        KC_LBRACKET,    KC_RBRACKET,    _M_UNICODE,
                                                                                                     KC_LALT,        KC_HOME,        KC_PGUP,        KC_RALT,
                                                                                                                     KC_END,         KC_PGDOWN,
                                                                                     KC_SPACE,       KC_BSPACE,      KC_LGUI,        KC_RGUI,        KC_BSPACE,      KC_SPACE
   ),
   [_L_SYMBOLS] = LAYOUT_ergodox_pretty(
-    KC_ESCAPE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          ____,                                 KC_HASH,        KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,
-    ____,           KC_EXLM,        KC_AT,          KC_LCBR,        KC_RCBR,        KC_PIPE,        ____,                                 ____,           KC_UP,          KC_7,           KC_8,           KC_9,           KC_ASTR,        KC_F12,
-    ____,           KC_HASH,        KC_DLR,         KC_LPRN,        KC_RPRN,        KC_GRAVE,                                                             KC_DOWN,        KC_4,           KC_5,           KC_6,           KC_PLUS,        ____,
-    ____,           KC_PERC,        KC_CIRC,        KC_LBRACKET,    KC_RBRACKET,    KC_TILD,        ____,                                 ____,           KC_AMPR,        KC_1,           KC_2,           KC_3,           KC_BSLASH,      ____,
-    ____,           KC_EQUAL,       ____, ____, ____,                                                                                                     ____,           KC_0,           KC_DOT,         KC_EQUAL,       ____,
+    KC_ESCAPE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          ____,                                 KC_HASH,        KC_F6,          KC_F7,          KC_F8,          KC_F9,           KC_F10,         KC_F11,
+    ____,           KC_EXLM,        KC_AT,          KC_LCBR,        KC_RCBR,        KC_PIPE,        ____,                                 ____,           KC_UP,          KC_P7,          KC_P8,          KC_P9,           KC_PAST,        KC_F12,
+    ____,           KC_HASH,        KC_DLR,         KC_LPRN,        KC_RPRN,        KC_GRAVE,                                                             KC_DOWN,        KC_P4,          KC_P5,          KC_P6,           KC_PPLS,        ____,
+    ____,           KC_PERC,        KC_CIRC,        KC_LBRACKET,    KC_RBRACKET,    KC_TILD,        ____,                                 ____,           KC_PMNS,        KC_P1,          KC_P2,          KC_P3,           KC_BSLASH,      ____,
+    ____,           KC_EQUAL,       ____,           ____,           ____,                                                                                                 KC_P0,          KC_P0,          KC_PDOT,         KC_EQUAL,       ____,
                                                                                                     RGB_MOD,        _M_CURLIES,     RGB_TOG,        RGB_SLD,
                                                                                                                     _M_PARENS,      ____,
                                                                                     RGB_VAD,        RGB_VAI,        _M_SQUARES,     ____,           ____,           ____
@@ -74,8 +75,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           RESET,
     ____,           ____,           ____,           KC_MS_UP,       ____,           ____,           ____,                                 KC_BRIGHTNESS_UP,____,          ____,           ____,           ____,           ____,           ____,
     LT(_L_MOUSE_SCROLL,KC_NO),____, KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    ____,                                                                 ____,           ____,           ____,           ____,           ____,           ____,
-    ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 KC_BRIGHTNESS_DOWN,KC_MEDIA_STOP,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,____, ____,
-    ____,           WEBUSB_PAIR,    ____,           KC_MS_BTN2,     KC_MS_BTN1,                                                                           KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_AUDIO_MUTE,____,           ____,
+    ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 KC_BRIGHTNESS_DOWN,KC_MEDIA_STOP,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,____,____,
+    ____,           WEBUSB_PAIR,    ____,           KC_MS_BTN2,     KC_MS_BTN1,                                                                                           KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_AUDIO_MUTE,____,           ____,
                                                                                                     ____,           ____,           ____,           ____,
                                                                                                                     ____,           ____,
                                                                                     ____,           ____,           ____,           ____,           ____,           KC_WWW_BACK
@@ -134,61 +135,74 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][5] = {
       B     V     C     X     Z
             RGT   LFT   ORYX  "
     */
+    [_L_SYMBOLS] = {
+      ___,  ___,  ___,  ___,  ___,
+      _RED, _BLU, _BLU, _BLU, _YLW,
+      _RED, _BLU, _BLU, _BLU, _YLW,
+      _YLW, _BLU, _BLU, _BLU, _YLW,
+            _BLU, _BLU, _YLW, _YLW,
+
+      ___,  ___,  ___,  ___,  ___,
+      ___,  _RED, _RED, _BLU, ___,
+      ___,  _YLW, _YLW, ___,  _BLU,
+      ___,  _GRN, _GRN, ___,  _BLU,
+            ___,  ___,  ___,  ___
+    },
 
     [_L_MOUSE] = {
-      _C__, _C__, _C__, _C__, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-            _C__, _C__, _C__, _C__,
+      ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,  ___,
+            ___,  ___,  ___,  ___,
 
-      _C__, _C__, _C__, _C__, _C__,
-      _C__, _C__, _C_B, _C__, _C__,
-      _C__, _C_B, _C_B, _C_B, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-            _C_B, _C_B, _C__, _C__
+      ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  _BLU, ___,  ___,
+      ___,  _BLU, _BLU, _BLU, ___,
+      ___,  ___,  ___,  ___,  ___,
+            _BLU, _BLU, ___,  ___
     },
 
     [_L_MOUSE_SCROLL] = {
-      _C__, _C__, _C__, _C__, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-            _C__, _C__, _C__, _C__,
+      ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,  ___,
+            ___,  ___,  ___,  ___,
 
-      _C__, _C__, _C__, _C__, _C__,
-      _C__, _C__, _C_B, _C__, _C__,
-      _C__, _C_B, _C_B, _C_B, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-            _C__, _C__, _C__, _C__
+      ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  _BLU, ___,  ___,
+      ___,  _BLU, _BLU, _BLU, ___,
+      ___,  ___,  ___,  ___,  ___,
+            ___,  ___,  ___,  ___
     },
 
     [_L_COMMAND] = {
-      _C__, _C__, _C__, _C__, _C__,
-      _C__, _C__, _C_G, _C__, _C__,
-      _C__, _C_G, _C_G, _C_G, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-            _C__, _C__, _C__, _C__,
+      ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  _GRN, ___,  ___,
+      ___,  _GRN, _GRN, _GRN, ___,
+      ___,  ___,  ___,  ___,  ___,
+            ___,  ___,  ___,  ___,
 
-      _C_B, _C_B, _C_B, _C_B, _C_B,
-      _C__, _C__, _C__, _C__, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-            _C__, _C__, _C__, _C__
+      _BLU, _BLU, _BLU, _BLU, _BLU,
+      ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,  ___,
+            ___,  ___,  ___,  ___
     },
 
     [_L_ERLANG] = {
-      _CLG, _CLG, _CLG, _C__, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-            _C__, _C__, _C__, _C__,
+      _LGR, _LGR, _LGR, ___,  ___,
+      ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,  ___,
+            ___,  ___,  ___,  ___,
 
-      _C__, _C__, _C__, _C__, _C__,
-      _C__, _C__, _C_R, _C__, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-      _C__, _C__, _C__, _C__, _C__,
-            _C__, _C__, _C__, _C__
+      ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  _RED, ___,  ___,
+      ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,  ___,
+            ___,  ___,  ___,  ___
     },
 };
 
@@ -216,6 +230,7 @@ void rgb_matrix_indicators_user(void) {
 
     uint8_t layer = biton32(layer_state);
     switch (layer) {
+    case _L_SYMBOLS:
     case _L_MOUSE:
     case _L_MOUSE_SCROLL:
     case _L_COMMAND:
