@@ -24,9 +24,11 @@
 #define _LGR {109,51,209}  // Light Green
 #define _BLU {141,255,233} // Blue
 #define _YLW {41, 179, 222} // Yellow
+#define _ORA {HSV_ORANGE}
 
 enum layer_names {
   _L_BASE = 0,
+  _L_DVORAK,
   _L_SYMBOLS,
   _L_MOUSE,
   _L_MOUSE_SCROLL,
@@ -62,6 +64,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                                                     SH_T(KC_END),   SH_T(KC_PGDOWN),
                                                                                     KC_SPACE,       KC_BSPACE,      KC_LGUI,        KC_RGUI,        KC_BSPACE,      KC_SPACE
   ),
+  [_L_DVORAK] = LAYOUT_ergodox_pretty(
+    ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
+    ____,           KC_EQUAL,       KC_COMMA,       KC_DOT,         KC_P,           KC_Y,           ____,                                 ____,           KC_F,           KC_G,           KC_C,           KC_R,           KC_L,           ____,
+    ____,           KC_A,           KC_O,           KC_E,           KC_U,           KC_I,                                                                 KC_D,           KC_H,           KC_T,           KC_N,           KC_S,           ____,
+    ____,           KC_SCOLON,      KC_Q,           KC_J,           KC_K,           KC_X,           ____,                                 ____,           KC_B,           KC_M,           KC_W,           KC_V,           RCTL_T(KC_Z),   ____,
+    ____,           ____,           ____,           ____,           ____,                                                                                                 ____,           ____,           ____,           ____,           ____,
+                                                                                                    ____,           ____,           ____,           ____,
+                                                                                                                    ____,           ____,
+                                                                                    ____,           ____,           ____,           ____,           ____,           ____
+  ),
   [_L_SYMBOLS] = LAYOUT_ergodox_pretty(
     KC_ESCAPE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          ____,                                 KC_HASH,        KC_F6,          KC_F7,          KC_F8,          KC_F9,           KC_F10,         KC_F11,
     ____,           KC_EXLM,        KC_AT,          KC_LCBR,        KC_RCBR,        KC_PIPE,        ____,                                 ____,           KC_UP,          KC_P7,          KC_P8,          KC_P9,           KC_PAST,        KC_F12,
@@ -93,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                     ____,           ____,           ____,           ____,           ____,           ____
   ),
   [_L_COMMAND] = LAYOUT_ergodox_pretty(
-    MAGIC_TOGGLE_NKRO,TO(_L_BASE),  TO(_L_SYMBOLS), TO(_L_MOUSE),   TO(_L_MOUSE_SCROLL),TO(_L_COMMAND),TO(_L_ERLANG),                     ____,           ____,           ____,           ____,           ____,           WEBUSB_PAIR,    ____,
+    MAGIC_TOGGLE_NKRO,TO(_L_BASE),  TO(_L_SYMBOLS), TO(_L_MOUSE),   TO(_L_MOUSE_SCROLL),TO(_L_COMMAND),____,                              ____,           TO(_L_ERLANG),  TO(_L_DVORAK),  ____,           ____,           WEBUSB_PAIR,    ____,
     ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           KC_UP,          ____,           ____,           ____,
     ____,           ____,           ____,           ____,           ____,           ____,                                                                 ____,           KC_LEFT,        KC_DOWN,        KC_RIGHT,       ____,           ____,
     ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
@@ -141,7 +153,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][5] = {
     ),
 
     [_L_MOUSE] = LED_LAYOUT_ergodox_pretty(
-      ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
+      _ORA, _ORA, _ORA, _ORA, _ORA,       ___,  ___,  ___,  ___,  ___,
       ___,  ___,  _BLU, ___,  ___,        ___,  ___,  ___,  ___,  ___,
       ___,  _BLU, _BLU, _BLU, ___,        ___,  ___,  ___,  ___,  ___,
       ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
@@ -157,7 +169,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][5] = {
     ),
 
     [_L_COMMAND] = LED_LAYOUT_ergodox_pretty(
-      _BLU, _BLU, _BLU, _BLU, _BLU,       ___,  ___,  ___,  ___,  ___,
+      _BLU, _BLU, _BLU, _BLU, _BLU,       _BLU, _BLU, ___,  ___,  ___,
       ___,  ___,  ___,  ___,  ___,        ___,  ___,  _GRN, ___,  ___,
       ___,  ___,  ___,  ___,  ___,        ___,  _GRN, _GRN, _GRN, ___,
       ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
@@ -213,7 +225,28 @@ void rgb_matrix_indicators_user(void) {
     }
 }
 
+static bool dvorak_slip = false;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (IS_LAYER_ON(_L_DVORAK) || dvorak_slip) {
+    switch (keycode) {
+    case KC_LALT:
+    case KC_RALT:
+    case KC_LCTL:
+    case KC_RCTL:
+    case KC_LGUI:
+    case KC_RGUI:
+      if (record->event.pressed) {
+        layer_off(_L_DVORAK);
+        dvorak_slip = true;
+        ergodox_right_led_2_on();
+      } else {
+        layer_on(_L_DVORAK);
+        dvorak_slip = false;
+        ergodox_right_led_2_off();
+      }
+    }
+  }
+
   switch (keycode) {
     case MM_1:
         rgb_matrix_mode(RGB_MATRIX_CYCLE_SPIRAL);
