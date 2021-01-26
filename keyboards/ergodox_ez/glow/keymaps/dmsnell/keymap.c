@@ -25,6 +25,7 @@
 #define _BLU {141,255,233} // Blue
 #define _YLW {41, 179, 222} // Yellow
 #define _ORA {HSV_ORANGE}
+#define _WHT {HSV_WHITE}
 
 enum layer_names {
   _L_BASE = 0,
@@ -71,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LT(_L_ERLANG,KC_DELETE),KC_Q,   KC_W,           KC_E,           KC_R,           KC_T,           _M_EXPOSE,                            KC_TAB,         KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLASH,
     LT(_L_SYMBOLS,KC_TAB),KC_A,     KC_S,           KC_D,           KC_F,           KC_G,                                                                 KC_H,           KC_J,           KC_K,           KC_L,           KC_SCOLON,      LT(_L_MOUSE,KC_QUOTE),
     KC_LSPO,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           LT(_L_COMMAND, KC_ENTER),             KC_ENTER,       KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH),KC_RSPC,
-    KC_LCTRL,       WEBUSB_PAIR,    LALT(KC_LSHIFT),KC_LEFT,        KC_RIGHT,                                                                                             KC_UP,          KC_DOWN,        KC_LBRACKET,    KC_RBRACKET,    _M_UNICODE,
+    KC_LCTRL,       DF(_L_BASE_MOD),LALT(KC_LSHIFT),KC_LEFT,        KC_RIGHT,                                                                                             KC_UP,          KC_DOWN,        KC_LBRACKET,    KC_RBRACKET,    _M_UNICODE,
                                                                                                     KC_LALT,        KC_HOME,        KC_PGUP,        KC_RALT,
                                                                                                                     SH_T(KC_END),   SH_T(KC_PGDOWN),
                                                                                     KC_SPACE,       KC_BSPACE,      KC_LGUI,        KC_RGUI,        KC_BSPACE,      KC_SPACE
@@ -80,9 +81,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_L_BASE_MOD] = LAYOUT_ergodox_pretty(
     KC_EQUAL,       KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_ESCAPE,                            _M_TAB_CHAR,    KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,
     LT(_L_ERLANG,KC_DELETE),KC_Q,   KC_W,           KC_E,           KC_R,           KC_T,           _M_EXPOSE,                            KC_TAB,         KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLASH,
-    LT(_L_SYMBOLS,KC_TAB),KC_A,     LALT_T(KC_S),   LSFT_T(KC_D),   LCTL_T(KC_F),   KC_G,                                                                 KC_H,           RCTL_T(KC_J),   RSFT_T(KC_K),   RALT_T(KC_L),   KC_SCOLON,      LT(_L_MOUSE,KC_QUOTE),
-    KC_LSPO,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           LT(_L_COMMAND, KC_ENTER),             KC_ENTER,       KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH),KC_RSPC,
-    KC_LCTRL,       WEBUSB_PAIR,    LALT(KC_LSHIFT),KC_LEFT,        KC_RIGHT,                                                                                             KC_UP,          KC_DOWN,        KC_LBRACKET,    KC_RBRACKET,    _M_UNICODE,
+    LT(_L_COMMAND,KC_TAB),LT(_L_SYMBOLS,KC_A),LALT_T(KC_S),LSFT_T(KC_D),LCTL_T(KC_F),LGUI_T(KC_G),                                                        RGUI_T(KC_H),   RCTL_T(KC_J),   RSFT_T(KC_K),   RALT_T(KC_L),   LT(_L_MOUSE,KC_SCOLON),      LT(_L_MOUSE,KC_QUOTE),
+    KC_LSPO, KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           LT(_L_COMMAND, KC_ENTER),             KC_ENTER,       KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH),KC_RSPC,
+    KC_LCTRL,       DF(_L_BASE),    LALT(KC_LSHIFT),KC_LEFT,        KC_RIGHT,                                                                                             KC_UP,          KC_DOWN,        KC_LBRACKET,    KC_RBRACKET,    _M_UNICODE,
                                                                                                     KC_LALT,        KC_HOME,        KC_PGUP,        KC_RALT,
                                                                                                                     SH_T(KC_END),   SH_T(KC_PGDOWN),
                                                                                     KC_SPACE,       KC_BSPACE,      KC_LGUI,        KC_RGUI,        KC_BSPACE,      KC_SPACE
@@ -101,8 +102,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_L_SYMBOLS] = LAYOUT_ergodox_pretty(
     KC_ESCAPE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          ____,                                 KC_HASH,        KC_F6,          KC_F7,          KC_F8,          KC_F9,           KC_F10,         KC_F11,
-    ____,           KC_EXLM,        KC_AT,          KC_LCBR,        KC_RCBR,        KC_PIPE,        ____,                                 ____,           KC_UP,          KC_P7,          KC_P8,          KC_P9,           KC_PAST,        KC_F12,
-    ____,           KC_HASH,        KC_DLR,         KC_LPRN,        KC_RPRN,        KC_GRAVE,                                                             KC_DOWN,        KC_P4,          KC_P5,          KC_P6,           KC_PPLS,        ____,
+    ____,           KC_EXLM,        KC_AT,          KC_LCBR,        KC_RCBR,        KC_PIPE,        ____,                                 ____,           KC_HASH,        KC_P7,          KC_P8,          KC_P9,           KC_PAST,        KC_F12,
+    ____,           KC_HASH,        KC_DLR,         KC_LPRN,        KC_RPRN,        KC_GRAVE,                                                             KC_AT,          KC_P4,          KC_P5,          KC_P6,           KC_PPLS,        ____,
     ____,           KC_PERC,        KC_CIRC,        KC_LBRACKET,    KC_RBRACKET,    KC_TILD,        ____,                                 ____,           KC_PMNS,        KC_P1,          KC_P2,          KC_P3,           KC_BSLASH,      ____,
     ____,           KC_EQUAL,       ____,           ____,           ____,                                                                                                 KC_P0,          KC_P0,          KC_PDOT,         KC_EQUAL,       ____,
                                                                                                     RGB_MOD,        _M_CURLIES,     RGB_TOG,        RGB_SLD,
@@ -224,7 +225,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][5] = {
     ),
 
     [_L_COMMAND] = LED_LAYOUT_ergodox_pretty(
-      _BLU, _BLU, _BLU, _BLU, _BLU,       _BLU, _BLU, ___,  ___,  ___,
+      _BLU, _BLU, _BLU, _BLU, _BLU,       _BLU, _BLU, ___,  ___,  _WHT,
       _RED, _RED, ___,  ___,  ___,        _ORA, _YLW, _GRN, _YLW, ___,
       ___,  ___,  ___,  ___,  ___,        _ORA, _GRN, _GRN, _GRN, ___,
       ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
