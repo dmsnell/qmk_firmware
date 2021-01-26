@@ -28,12 +28,14 @@
 
 enum layer_names {
   _L_BASE = 0,
+  _L_BASE_MOD,
   _L_DVORAK,
   _L_SYMBOLS,
+  _L_HEXNUM,
   _L_MOUSE,
   _L_MOUSE_SCROLL,
-  _L_COMMAND,
   _L_ERLANG,
+  _L_COMMAND,
 };
 
 enum custom_keycodes {
@@ -54,6 +56,16 @@ enum custom_keycodes {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  // [_L_NAME] = LAYOUT_ergodox_pretty(
+  //   ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
+  //   ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
+  //   ____,           ____,           ____,           ____,           ____,           ____,                                                                 ____,           ____,           ____,           ____,           ____,           ____,
+  //   ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
+  //   ____,           ____,           ____,           ____,           ____,                                                                                                 ____,           ____,           ____,           ____,           ____,
+  //                                                                                                   ____,           ____,           ____,           ____,
+  //                                                                                                                   ____,           ____,
+  //                                                                                   ____,           ____,           ____,           ____,           ____,           ____
+  // ),
   [_L_BASE] = LAYOUT_ergodox_pretty(
     KC_EQUAL,       KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_ESCAPE,                            _M_TAB_CHAR,    KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,
     LT(_L_ERLANG,KC_DELETE),KC_Q,   KC_W,           KC_E,           KC_R,           KC_T,           _M_EXPOSE,                            KC_TAB,         KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLASH,
@@ -64,16 +76,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                                                     SH_T(KC_END),   SH_T(KC_PGDOWN),
                                                                                     KC_SPACE,       KC_BSPACE,      KC_LGUI,        KC_RGUI,        KC_BSPACE,      KC_SPACE
   ),
+
+  [_L_BASE_MOD] = LAYOUT_ergodox_pretty(
+    KC_EQUAL,       KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_ESCAPE,                            _M_TAB_CHAR,    KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,
+    LT(_L_ERLANG,KC_DELETE),KC_Q,   KC_W,           KC_E,           KC_R,           KC_T,           _M_EXPOSE,                            KC_TAB,         KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLASH,
+    LT(_L_SYMBOLS,KC_TAB),KC_A,     LALT_T(KC_S),   LSFT_T(KC_D),   LCTL_T(KC_F),   KC_G,                                                                 KC_H,           RCTL_T(KC_J),   RSFT_T(KC_K),   RALT_T(KC_L),   KC_SCOLON,      LT(_L_MOUSE,KC_QUOTE),
+    KC_LSPO,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           LT(_L_COMMAND, KC_ENTER),             KC_ENTER,       KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH),KC_RSPC,
+    KC_LCTRL,       WEBUSB_PAIR,    LALT(KC_LSHIFT),KC_LEFT,        KC_RIGHT,                                                                                             KC_UP,          KC_DOWN,        KC_LBRACKET,    KC_RBRACKET,    _M_UNICODE,
+                                                                                                    KC_LALT,        KC_HOME,        KC_PGUP,        KC_RALT,
+                                                                                                                    SH_T(KC_END),   SH_T(KC_PGDOWN),
+                                                                                    KC_SPACE,       KC_BSPACE,      KC_LGUI,        KC_RGUI,        KC_BSPACE,      KC_SPACE
+  ),
+
   [_L_DVORAK] = LAYOUT_ergodox_pretty(
     ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
     ____,           KC_EQUAL,       KC_COMMA,       KC_DOT,         KC_P,           KC_Y,           ____,                                 ____,           KC_F,           KC_G,           KC_C,           KC_R,           KC_L,           ____,
     ____,           KC_A,           KC_O,           KC_E,           KC_U,           KC_I,                                                                 KC_D,           KC_H,           KC_T,           KC_N,           KC_S,           ____,
     ____,           KC_SCOLON,      KC_Q,           KC_J,           KC_K,           KC_X,           ____,                                 ____,           KC_B,           KC_M,           KC_W,           KC_V,           RCTL_T(KC_Z),   ____,
-    ____,           ____,           ____,           ____,           ____,                                                                                                 ____,           ____,           ____,           ____,           ____,
+    ____,           ____,           ____,           ____,           ____,                                                                                                 ____,           ____,           ____,           ____,           KC_SLASH,
                                                                                                     ____,           ____,           ____,           ____,
                                                                                                                     ____,           ____,
                                                                                     ____,           ____,           ____,           ____,           ____,           ____
   ),
+
   [_L_SYMBOLS] = LAYOUT_ergodox_pretty(
     KC_ESCAPE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          ____,                                 KC_HASH,        KC_F6,          KC_F7,          KC_F8,          KC_F9,           KC_F10,         KC_F11,
     ____,           KC_EXLM,        KC_AT,          KC_LCBR,        KC_RCBR,        KC_PIPE,        ____,                                 ____,           KC_UP,          KC_P7,          KC_P8,          KC_P9,           KC_PAST,        KC_F12,
@@ -82,8 +107,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ____,           KC_EQUAL,       ____,           ____,           ____,                                                                                                 KC_P0,          KC_P0,          KC_PDOT,         KC_EQUAL,       ____,
                                                                                                     RGB_MOD,        _M_CURLIES,     RGB_TOG,        RGB_SLD,
                                                                                                                     _M_PARENS,      ____,
-                                                                                    RGB_VAD,        RGB_VAI,        _M_SQUARES,     ____,           ____,           ____
+                                                                                    RGB_VAD,        RGB_VAI,        _M_SQUARES,     ____,           ____,           MO(_L_HEXNUM)
   ),
+
+  [_L_HEXNUM] = LAYOUT_ergodox_pretty(
+    ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
+    ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           KC_D,           KC_E,           KC_F,           ____,           ____,
+    ____,           ____,           ____,           ____,           ____,           ____,                                                                 ____,           KC_A,           KC_B,           KC_C,           ____,           ____,
+    ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
+    ____,           ____,           ____,           ____,           ____,                                                                                                 ____,           ____,           ____,           ____,           ____,
+                                                                                                    ____,           ____,           ____,           ____,
+                                                                                                                    ____,           ____,
+                                                                                    ____,           ____,           ____,           ____,           ____,           ____
+  ),
+
   [_L_MOUSE] = LAYOUT_ergodox_pretty(
     ____,           MM_1,           MM_2,           MM_3,           MM_4,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           RESET,
     ____,           ____,           ____,           KC_MS_UP,       ____,           ____,           ____,                                 KC_BRIGHTNESS_UP,____,          ____,           ____,           ____,           ____,           ____,
@@ -94,6 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                                                     ____,           ____,
                                                                                     RGB_SPD,        RGB_SPI,        ____,           ____,           ____,           KC_WWW_BACK
   ),
+
   [_L_MOUSE_SCROLL] = LAYOUT_ergodox_pretty(
     ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
     ____,           ____,           ____,           KC_MS_WH_UP,    ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
@@ -104,16 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                                                     DYN_REC_STOP,   ____,
                                                                                     ____,           ____,           ____,           ____,           ____,           ____
   ),
-  [_L_COMMAND] = LAYOUT_ergodox_pretty(
-    MAGIC_TOGGLE_NKRO,TO(_L_BASE),  TO(_L_SYMBOLS), TO(_L_MOUSE),   TO(_L_MOUSE_SCROLL),TO(_L_COMMAND),____,                              ____,           TO(_L_ERLANG),  TO(_L_DVORAK),  ____,           ____,           WEBUSB_PAIR,    ____,
-    ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           KC_UP,          ____,           ____,           ____,
-    ____,           ____,           ____,           ____,           ____,           ____,                                                                 ____,           KC_LEFT,        KC_DOWN,        KC_RIGHT,       ____,           ____,
-    ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
-    ____,           ____,           ____,           ____,           ____,                                                                                                 ____,           ____,           ____,           ____,           ____,
-                                                                                                    ____,           ____,           ____,           ____,
-                                                                                                                    ____,           ____,
-                                                                                    ____,           ____,           ____,           ____,           ____,           ____
-  ),
+
   [_L_ERLANG] = LAYOUT_ergodox_pretty(
     ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           _M_ERL_C1,      _M_ERL_C2,      _M_ERL_C3,      ____,           ____,           ____,
     ____,           ____,           ____,           _M_ERL_EXPORT,  ____,           ____,           ____,                                 _M_ERL_MAP,     ____,           ____,           ____,           ____,           ____,           ____,
@@ -124,8 +153,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                                                     ____,           ____,
                                                                                     ____,           ____,           ____,           ____,           ____,           ____
   ),
-};
 
+  [_L_COMMAND] = LAYOUT_ergodox_pretty(
+    MAGIC_TOGGLE_NKRO,TO(_L_BASE),  TO(_L_SYMBOLS), TO(_L_MOUSE),   TO(_L_MOUSE_SCROLL),TO(_L_COMMAND),____,                              ____,           TO(_L_ERLANG),  TO(_L_DVORAK),  ____,           ____,           WEBUSB_PAIR,    ____,
+    ____,           DF(_L_BASE),    DF(_L_BASE_MOD),____,           ____,           ____,           ____,                                 ____,           KC_PGUP,        KC_HOME,        KC_UP,          KC_END,         ____,           ____,
+    ____,           ____,           ____,           ____,           ____,           ____,                                                                 KC_PGDOWN,      KC_LEFT,        KC_DOWN,        KC_RIGHT,       ____,           ____,
+    ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
+    ____,           ____,           ____,           ____,           ____,                                                                                                 ____,           ____,           ____,           ____,           ____,
+                                                                                                    ____,           ____,           ____,           ____,
+                                                                                                                    ____,           ____,
+                                                                                    ____,           ____,           ____,           ____,           ____,           ____
+  ),
+};
 
 extern bool g_suspend_state;
 extern rgb_config_t rgb_matrix_config;
@@ -152,6 +191,14 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][5] = {
       ___,  ___,  ___,  ___,                    _BLU, _BLU, _YLW, _YLW
     ),
 
+    [_L_HEXNUM] = LED_LAYOUT_ergodox_pretty(
+      ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
+      ___,  _BLU, _RED, _RED, ___,        _RED, _ORA, _ORA, _ORA, _YLW,
+      _BLU, ___,  _YLW, _YLW, ___,        _RED, _ORA, _ORA, _ORA, _YLW,
+      _BLU, ___,  _GRN, _GRN, ___,        _YLW, _BLU, _BLU, _BLU, _YLW,
+      ___,  ___,  ___,  ___,                    _BLU, _BLU, _YLW, _YLW
+    ),
+
     [_L_MOUSE] = LED_LAYOUT_ergodox_pretty(
       _ORA, _ORA, _ORA, _ORA, _ORA,       ___,  ___,  ___,  ___,  ___,
       ___,  ___,  _BLU, ___,  ___,        ___,  ___,  ___,  ___,  ___,
@@ -168,18 +215,18 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][5] = {
       ___,  ___,  ___,  ___,                    ___,  ___,  ___,  ___
     ),
 
-    [_L_COMMAND] = LED_LAYOUT_ergodox_pretty(
-      _BLU, _BLU, _BLU, _BLU, _BLU,       _BLU, _BLU, ___,  ___,  ___,
-      ___,  ___,  ___,  ___,  ___,        ___,  ___,  _GRN, ___,  ___,
-      ___,  ___,  ___,  ___,  ___,        ___,  _GRN, _GRN, _GRN, ___,
-      ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
-      ___,  ___,  ___,  ___,                    ___,  ___,  ___,  ___
-    ),
-
     [_L_ERLANG] = LED_LAYOUT_ergodox_pretty(
       ___,  ___,  ___,  ___,  ___,        _LGR, _LGR, _LGR, ___,  ___,
       ___,  ___,  _RED, ___,  ___,        ___,  ___,  ___,  ___,  ___,
       ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,                    ___,  ___,  ___,  ___
+    ),
+
+    [_L_COMMAND] = LED_LAYOUT_ergodox_pretty(
+      _BLU, _BLU, _BLU, _BLU, _BLU,       _BLU, _BLU, ___,  ___,  ___,
+      _RED, _RED, ___,  ___,  ___,        _ORA, _YLW, _GRN, _YLW, ___,
+      ___,  ___,  ___,  ___,  ___,        _ORA, _GRN, _GRN, _GRN, ___,
       ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
       ___,  ___,  ___,  ___,                    ___,  ___,  ___,  ___
     ),
@@ -210,6 +257,7 @@ void rgb_matrix_indicators_user(void) {
     uint8_t layer = biton32(layer_state);
     switch (layer) {
     case _L_SYMBOLS:
+    case _L_HEXNUM:
     case _L_MOUSE:
     case _L_MOUSE_SCROLL:
     case _L_COMMAND:
@@ -227,27 +275,27 @@ void rgb_matrix_indicators_user(void) {
 
 static bool dvorak_slip = false;
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (IS_LAYER_ON(_L_DVORAK) || dvorak_slip) {
-    switch (keycode) {
-    case KC_LALT:
-    case KC_RALT:
-    case KC_LCTL:
-    case KC_RCTL:
-    case KC_LGUI:
-    case KC_RGUI:
-      if (record->event.pressed) {
-        layer_off(_L_DVORAK);
-        dvorak_slip = true;
-        ergodox_right_led_2_on();
-      } else {
-        layer_on(_L_DVORAK);
-        dvorak_slip = false;
-        ergodox_right_led_2_off();
-      }
+    if (IS_LAYER_ON(_L_DVORAK) || dvorak_slip) {
+        switch (keycode) {
+        case KC_LALT:
+        case KC_RALT:
+        case KC_LCTL:
+        case KC_RCTL:
+        case KC_LGUI:
+        case KC_RGUI:
+            if (record->event.pressed) {
+                layer_off(_L_DVORAK);
+                dvorak_slip = true;
+                ergodox_right_led_2_set(LED_BRIGHTNESS_LO);
+            } else {
+                layer_on(_L_DVORAK);
+                dvorak_slip = false;
+                ergodox_right_led_2_off();
+            }
+        }
     }
-  }
 
-  switch (keycode) {
+    switch (keycode) {
     case MM_1:
         rgb_matrix_mode(RGB_MATRIX_CYCLE_SPIRAL);
         rgb_matrix_set_speed(48);
@@ -342,53 +390,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           rgblight_mode(1);
         }
         return false;
-  }
-  return true;
+    }
+
+    return true;
 }
 
 uint32_t layer_state_set_user(uint32_t state) {
     uint8_t layer = biton32(state);
 
-    ergodox_board_led_off();
-    ergodox_right_led_1_off();
-    ergodox_right_led_2_off();
-    ergodox_right_led_3_off();
-    switch (layer) {
-    case 1:
-        ergodox_right_led_1_on();
-        break;
-
-    case 2:
-        ergodox_right_led_2_on();
-        break;
-
-    case 3:
-        ergodox_right_led_3_on();
-        break;
-
-    case 4:
-        ergodox_right_led_1_on();
-        ergodox_right_led_2_on();
-        break;
-
-    case 5:
-        ergodox_right_led_1_on();
-        ergodox_right_led_3_on();
-        break;
-
-    case 6:
-        ergodox_right_led_2_on();
-        ergodox_right_led_3_on();
-        break;
-
-    case 7:
-        ergodox_right_led_1_on();
-        ergodox_right_led_2_on();
-        ergodox_right_led_3_on();
-        break;
-
-    default:
-        break;
+    if (_L_DVORAK != layer) {
+        dvorak_slip = false;
     }
+
+    ergodox_board_led_off();
+    if (IS_LAYER_ON(_L_BASE_MOD)) {
+      ergodox_right_led_1_on();
+    } else {
+      ergodox_right_led_1_off();
+    }
+    if (!(_L_DVORAK == layer && dvorak_slip)) {
+      ergodox_right_led_2_off();
+    }
+    ergodox_right_led_3_off();
+
     return state;
 };
