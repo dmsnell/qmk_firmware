@@ -36,6 +36,7 @@ enum layer_names {
 
 enum custom_keycodes {
   RGB_SLD = EZ_SAFE_RANGE,
+  MM_1, MM_2, MM_3, MM_4,     // RGB Matrix Mode Selectors
   _M_EXPOSE,                  // macOS Exposé
   _M_TAB_CHAR,                // for entering tab characters in browsers which otherwise move to the next input field
   _M_UNICODE,                 // macOS Unicode Picker panel
@@ -72,14 +73,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                     RGB_VAD,        RGB_VAI,        _M_SQUARES,     ____,           ____,           ____
   ),
   [_L_MOUSE] = LAYOUT_ergodox_pretty(
-    ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           RESET,
+    ____,           MM_1,           MM_2,           MM_3,           MM_4,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           RESET,
     ____,           ____,           ____,           KC_MS_UP,       ____,           ____,           ____,                                 KC_BRIGHTNESS_UP,____,          ____,           ____,           ____,           ____,           ____,
     LT(_L_MOUSE_SCROLL,KC_NO),____, KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    ____,                                                                 ____,           ____,           ____,           ____,           ____,           ____,
     ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 KC_BRIGHTNESS_DOWN,KC_MEDIA_STOP,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,____,____,
     ____,           WEBUSB_PAIR,    ____,           KC_MS_BTN2,     KC_MS_BTN1,                                                                                           KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_AUDIO_MUTE,____,           ____,
                                                                                                     ____,           ____,           ____,           ____,
                                                                                                                     ____,           ____,
-                                                                                    ____,           ____,           ____,           ____,           ____,           KC_WWW_BACK
+                                                                                    RGB_SPD,        RGB_SPI,        ____,           ____,           ____,           KC_WWW_BACK
   ),
   [_L_MOUSE_SCROLL] = LAYOUT_ergodox_pretty(
     ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
@@ -119,6 +120,8 @@ extern rgb_config_t rgb_matrix_config;
 
 void keyboard_post_init_user(void) {
   rgb_matrix_enable();
+  rgb_matrix_mode(RGB_MATRIX_CYCLE_SPIRAL);
+  rgb_matrix_set_speed(48);
 }
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][5] = {
@@ -212,6 +215,23 @@ void rgb_matrix_indicators_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+    case MM_1:
+        rgb_matrix_mode(RGB_MATRIX_CYCLE_SPIRAL);
+        rgb_matrix_set_speed(48);
+        break;
+
+    case MM_2:
+        rgb_matrix_mode(RGB_MATRIX_CYCLE_OUT_IN);
+        break;
+
+    case MM_3:
+        rgb_matrix_mode(RGB_MATRIX_TYPING_HEATMAP);
+        break;
+
+    case MM_4:
+        rgb_matrix_mode(RGB_MATRIX_DIGITAL_RAIN);
+        break;
+
     case _M_EXPOSE:
         if (record->event.pressed) {
           SEND_STRING(SS_RCTL(SS_TAP(X_UP)));
