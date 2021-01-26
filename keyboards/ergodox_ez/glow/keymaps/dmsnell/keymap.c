@@ -59,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LSPO,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           LT(_L_COMMAND, KC_ENTER),             KC_ENTER,       KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH),KC_RSPC,
     KC_LCTRL,       WEBUSB_PAIR,    LALT(KC_LSHIFT),KC_LEFT,        KC_RIGHT,                                                                                             KC_UP,          KC_DOWN,        KC_LBRACKET,    KC_RBRACKET,    _M_UNICODE,
                                                                                                     KC_LALT,        KC_HOME,        KC_PGUP,        KC_RALT,
-                                                                                                                    KC_END,         KC_PGDOWN,
+                                                                                                                    SH_T(KC_END),   SH_T(KC_PGDOWN),
                                                                                     KC_SPACE,       KC_BSPACE,      KC_LGUI,        KC_RGUI,        KC_BSPACE,      KC_SPACE
   ),
   [_L_SYMBOLS] = LAYOUT_ergodox_pretty(

@@ -7,3 +7,4 @@ WEBUSB_ENABLE = yes
 ORYX_ENABLE = yes
 DYNAMIC_MACRO_ENABLE = yes
 SRC = matrix.c
+SWAP_HANDS_ENABLE = yes
