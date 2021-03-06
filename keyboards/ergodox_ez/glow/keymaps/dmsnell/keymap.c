@@ -69,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ),
   [_L_BASE] = LAYOUT_ergodox_pretty(
     KC_EQUAL,       KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_ESCAPE,                            _M_TAB_CHAR,    KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,
-    LT(_L_ERLANG,KC_DELETE),KC_Q,   KC_W,           KC_E,           KC_R,           KC_T,           _M_EXPOSE,                            KC_TAB,         KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLASH,
+    LT(_L_ERLANG,KC_DELETE),KC_Q,   KC_W,           KC_E,           KC_R,           KC_T,           _M_EXPOSE,                            KC_TAB,         KC_Y,           KC_U,           LT(_L_HEXNUM,KC_I),KC_O,        KC_P,           KC_BSLASH,
     LT(_L_SYMBOLS,KC_TAB),KC_A,     KC_S,           KC_D,           KC_F,           KC_G,                                                                 KC_H,           KC_J,           KC_K,           KC_L,           KC_SCOLON,      LT(_L_MOUSE,KC_QUOTE),
     KC_LSPO,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           LT(_L_COMMAND, KC_ENTER),             KC_ENTER,       KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH),KC_RSPC,
     KC_LCTRL,       DF(_L_BASE_MOD),LALT(KC_LSHIFT),KC_LEFT,        KC_RIGHT,                                                                                             KC_UP,          KC_DOWN,        KC_LBRACKET,    KC_RBRACKET,    _M_UNICODE,
@@ -80,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_L_BASE_MOD] = LAYOUT_ergodox_pretty(
     KC_EQUAL,       KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_ESCAPE,                            _M_TAB_CHAR,    KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_MINUS,
-    LT(_L_ERLANG,KC_DELETE),KC_Q,   KC_W,           KC_E,           KC_R,           KC_T,           _M_EXPOSE,                            KC_TAB,         KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLASH,
+    LT(_L_ERLANG,KC_DELETE),KC_Q,   KC_W,           KC_E,           KC_R,           KC_T,           _M_EXPOSE,                            KC_TAB,         KC_Y,           KC_U,           LT(_L_HEXNUM,KC_I),KC_O,        KC_P,           KC_BSLASH,
     LT(_L_COMMAND,KC_TAB),LT(_L_SYMBOLS,KC_A),LALT_T(KC_S),LSFT_T(KC_D),LCTL_T(KC_F),LGUI_T(KC_G),                                                        RGUI_T(KC_H),   RCTL_T(KC_J),   RSFT_T(KC_K),   RALT_T(KC_L),   LT(_L_MOUSE,KC_SCOLON),      LT(_L_MOUSE,KC_QUOTE),
     KC_LSPO, KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           LT(_L_COMMAND, KC_ENTER),                    KC_ENTER,       KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH),KC_RSPC,
     KC_LCTRL,       DF(_L_BASE),    LALT(KC_LSHIFT),KC_LEFT,        KC_RIGHT,                                                                                             KC_UP,          KC_DOWN,        KC_LBRACKET,    KC_RBRACKET,    _M_UNICODE,
@@ -113,8 +113,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_L_HEXNUM] = LAYOUT_ergodox_pretty(
     ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
-    ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           KC_D,           KC_E,           KC_F,           ____,           ____,
-    ____,           ____,           ____,           ____,           ____,           ____,                                                                 ____,           KC_A,           KC_B,           KC_C,           ____,           ____,
+    ____,           ____,           ____,           KC_UP,          ____,           ____,           ____,                                 ____,           ____,           KC_D,           KC_E,           KC_F,           ____,           ____,
+    ____,           ____,           KC_LEFT,        KC_DOWN,        KC_RIGHT,       ____,                                                                 ____,           KC_A,           KC_B,           KC_C,           ____,           ____,
     ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
     ____,           ____,           ____,           ____,           ____,                                                                                                 ____,           ____,           ____,           ____,           ____,
                                                                                                     ____,           ____,           ____,           ____,
@@ -125,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_L_MOUSE] = LAYOUT_ergodox_pretty(
     ____,           MM_1,           MM_2,           MM_3,           MM_4,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           RESET,
     ____,           ____,           ____,           KC_MS_UP,       ____,           ____,           ____,                                 KC_BRIGHTNESS_UP,____,          ____,           ____,           ____,           ____,           ____,
-    LT(_L_MOUSE_SCROLL,KC_NO),____, KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    ____,                                                                 ____,           ____,           ____,           ____,           ____,           ____,
+    ____,LT(_L_MOUSE_SCROLL,KC_NO), KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    ____,                                                                 ____,           ____,           ____,           ____,           ____,           ____,
     ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 KC_BRIGHTNESS_DOWN,KC_MEDIA_STOP,KC_MEDIA_PLAY_PAUSE,KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,____,____,
     ____,           WEBUSB_PAIR,    ____,           KC_MS_BTN2,     KC_MS_BTN1,                                                                                           KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_AUDIO_MUTE,____,           ____,
                                                                                                     ____,           ____,           ____,           ____,
@@ -194,9 +194,9 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][5] = {
 
     [_L_HEXNUM] = LED_LAYOUT_ergodox_pretty(
       ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
-      ___,  _BLU, _RED, _RED, ___,        _RED, _ORA, _ORA, _ORA, _YLW,
-      _BLU, ___,  _YLW, _YLW, ___,        _RED, _ORA, _ORA, _ORA, _YLW,
-      _BLU, ___,  _GRN, _GRN, ___,        _YLW, _BLU, _BLU, _BLU, _YLW,
+      ___,  ___,  _RED, ___,  ___,        _RED, _ORA, _ORA, _ORA, _YLW,
+      ___,  _RED, _RED, _RED, ___,        _RED, _ORA, _ORA, _ORA, _YLW,
+      ___,  ___,  ___,  ___,  ___,        _YLW, _BLU, _BLU, _BLU, _YLW,
       ___,  ___,  ___,  ___,                    _BLU, _BLU, _YLW, _YLW
     ),
 
