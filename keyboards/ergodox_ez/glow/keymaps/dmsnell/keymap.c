@@ -28,8 +28,8 @@
 #define _WHT {HSV_WHITE}
 
 enum layer_names {
-  _L_BASE = 0,
-  _L_BASE_MOD,
+  _L_BASE_MOD = 0,
+  _L_BASE,
   _L_DVORAK,
   _L_SYMBOLS,
   _L_HEXNUM,
