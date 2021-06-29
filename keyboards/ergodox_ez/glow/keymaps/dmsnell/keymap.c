@@ -36,6 +36,7 @@ enum layer_names {
   _L_MOUSE_SCROLL,
   _L_ERLANG,
   _L_COMMAND,
+  _L_FN
 };
 
 enum custom_keycodes {
@@ -71,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LT(_L_ERLANG,KC_DELETE),KC_Q,   KC_W,           KC_E,           KC_R,           KC_T,           _M_EXPOSE,                            KC_TAB,         KC_Y,           LT(_L_MOUSE_SCROLL,KC_U),LT(_L_HEXNUM,KC_I),LT(_L_MOUSE,KC_O),KC_P,KC_BSLASH,
     LCTL_T(KC_TAB), LT(_L_SYMBOLS,KC_A),LALT_T(KC_S),LSFT_T(KC_D),  LCTL_T(KC_F),   LGUI_T(KC_G),                                                         RGUI_T(KC_H),   RCTL_T(KC_J),   RSFT_T(KC_K),   RALT_T(KC_L),   LT(_L_MOUSE,KC_SCOLON),LT(_L_MOUSE,KC_QUOTE),
     KC_LSPO,        KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,           LT(_L_COMMAND, KC_ENTER),             KC_ENTER,       KC_N,           KC_M,           KC_COMMA,       KC_DOT,         RCTL_T(KC_SLASH),KC_RSPC,
-    KC_LALT,        DF(_L_BASE),    LALT(KC_LSHIFT),KC_LEFT,        KC_RIGHT,                                                                                             KC_UP,          KC_DOWN,        KC_LBRACKET,    KC_RBRACKET,    _M_UNICODE,
+    MO(_L_FN),      DF(_L_BASE),    LALT(KC_LSHIFT),KC_LEFT,        KC_RIGHT,                                                                                             KC_UP,          KC_DOWN,        KC_LBRACKET,    KC_RBRACKET,    _M_UNICODE,
                                                                                                     KC_LALT,        KC_HOME,        KC_PGUP,        KC_RALT,
                                                                                                                     SH_T(KC_END),   SH_T(KC_PGDOWN),
                                                                                     KC_SPACE,       KC_BSPACE,      KC_LGUI,        KC_RGUI,        KC_BSPACE,      KC_SPACE
@@ -153,6 +154,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                                                     ____,           ____,
                                                                                     ____,           ____,           ____,           ____,           ____,           ____
   ),
+
+  [_L_FN] = LAYOUT_ergodox_pretty(
+    ____,          KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,           ____,                                 ____,          KC_F6,          KC_F7,          KC_F8,          KC_F9,         KC_F10,           ____,
+    ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
+    ____,           ____,           ____,           ____,           ____,           ____,                                                                 ____,           ____,           ____,           ____,           ____,           ____,
+    ____,           ____,           ____,           ____,           ____,           ____,           ____,                                 ____,           ____,           ____,           ____,           ____,           ____,           ____,
+    ____,           ____,           ____,           ____,           ____,                                                                                                 ____,           ____,           ____,           ____,           ____,
+                                                                                                    ____,           ____,           ____,           ____,
+                                                                                                                    ____,           ____,
+                                                                                    ____,           ____,           ____,           ____,           ____,           ____
+  )
 };
 
 extern bool g_suspend_state;
@@ -164,7 +176,7 @@ void keyboard_post_init_user(void) {
   rgb_matrix_set_speed(48);
 }
 
-const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][5] = {
+const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][7] = {
     // [_L_LAYER] = LED_LAYOUT_ergodox_pretty(
     //   ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
     //   ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
@@ -219,6 +231,14 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][5] = {
       ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
       ___,  ___,  ___,  ___,                    ___,  ___,  ___,  ___
     ),
+
+    [_L_FN] = LED_LAYOUT_ergodox_pretty(
+      _WHT, _WHT, _WHT, _WHT, _WHT,       _WHT, _WHT, _WHT, _WHT, _WHT,
+      ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,  ___,        ___,  ___,  ___,  ___,  ___,
+      ___,  ___,  ___,  ___,                    ___,  ___,  ___,  ___
+    )
 };
 
 void set_layer_color(int layer) {
@@ -251,6 +271,7 @@ void rgb_matrix_indicators_user(void) {
     case _L_MOUSE_SCROLL:
     case _L_COMMAND:
     case _L_ERLANG:
+    case _L_FN:
         set_layer_color(layer);
         break;
 
